@@ -11,14 +11,14 @@ applyTheme(savedTheme);
 
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.getElementById("themeToggle");
-
-    themeToggle.addEventListener("click", () => {
-        const current = document.body.getAttribute("data-theme");
-        const next = current === "dark" ? "light" : "dark";
-        applyTheme(next);
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const current = document.body.getAttribute("data-theme");
+            const next = current === "dark" ? "light" : "dark";
+            applyTheme(next);
+        });
+    }
 });
-
 
 /*******************************
  * RIPPLE EFFECT
@@ -41,7 +41,6 @@ document.addEventListener("click", e => {
 
     setTimeout(() => circle.remove(), 600);
 });
-
 
 /*******************************
  * HOMEPAGE: VIDEO LOADING + SEARCH + CATEGORIES + SIDEBAR
@@ -121,16 +120,17 @@ if (document.querySelector(".video-grid")) {
             const openSidebar = document.getElementById("openSidebar");
             const closeSidebar = document.getElementById("closeSidebar");
 
-            openSidebar.addEventListener("click", () => {
-                sidebar.classList.add("open");
-            });
+            if (openSidebar && closeSidebar && sidebar) {
+                openSidebar.addEventListener("click", () => {
+                    sidebar.classList.add("open");
+                });
 
-            closeSidebar.addEventListener("click", () => {
-                sidebar.classList.remove("open");
-            });
+                closeSidebar.addEventListener("click", () => {
+                    sidebar.classList.remove("open");
+                });
+            }
         });
 }
-
 
 /*******************************
  * VIDEO PAGE: LOAD SELECTED VIDEO + RECOMMENDED VIDEOS
