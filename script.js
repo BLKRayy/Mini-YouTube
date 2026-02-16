@@ -21,6 +21,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /*******************************
+ * RIPPLE EFFECT
+ *******************************/
+document.addEventListener("click", e => {
+    const target = e.target.closest(".ripple");
+    if (!target) return;
+
+    const circle = document.createElement("span");
+    circle.classList.add("ripple-effect");
+
+    const rect = target.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+
+    circle.style.width = circle.style.height = size + "px";
+    circle.style.left = e.clientX - rect.left - size / 2 + "px";
+    circle.style.top = e.clientY - rect.top - size / 2 + "px";
+
+    target.appendChild(circle);
+
+    setTimeout(() => circle.remove(), 600);
+});
+
+
+/*******************************
  * HOMEPAGE: VIDEO LOADING + SEARCH + CATEGORIES + SIDEBAR
  *******************************/
 if (document.querySelector(".video-grid")) {
@@ -37,7 +60,7 @@ if (document.querySelector(".video-grid")) {
 
                 list.forEach(video => {
                     const card = document.createElement("a");
-                    card.classList.add("video-card");
+                    card.classList.add("video-card", "fade-in");
                     card.href = `video.html?id=${video.id}`;
 
                     card.innerHTML = `
@@ -147,7 +170,7 @@ if (document.getElementById("videoPlayer")) {
 
             recommended.forEach(rec => {
                 const card = document.createElement("a");
-                card.classList.add("recommended-card");
+                card.classList.add("recommended-card", "fade-in");
                 card.href = `video.html?id=${rec.id}`;
 
                 card.innerHTML = `
