@@ -10,6 +10,8 @@
     "channelAvatar": "https://picsum.photos/seed/codeacademy/40/40",
     "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     "description": "Learn the fundamentals of web development by building your first interactive application from scratch."
+    "category": "coding"
+
   },
   {
     "id": 2,
@@ -22,6 +24,8 @@
     "channelAvatar": "https://picsum.photos/seed/designmasters/40/40",
     "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     "description": "Master CSS Grid with this comprehensive tutorial covering all properties and real-world examples."
+    "category": "coding"
+
   },
   {
     "id": 3,
@@ -34,6 +38,8 @@
     "channelAvatar": "https://picsum.photos/seed/jsweekly/40/40",
     "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     "description": "Explore modern JavaScript features including arrow functions, destructuring, promises, and async/await."
+    "category": "coding"
+
   },
   {
     "id": 4,
@@ -46,6 +52,8 @@
     "channelAvatar": "https://picsum.photos/seed/webdevpro/40/40",
     "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     "description": "Learn how to create beautiful, responsive websites that work perfectly on all devices."
+    "category": "coding"
+
   },
   {
     "id": 5,
@@ -58,6 +66,8 @@
     "channelAvatar": "https://picsum.photos/seed/codeacademy/40/40",
     "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     "description": "Complete guide to version control with Git and collaborative development using GitHub."
+    "category": "coding"
+
   },
   {
     "id": 6,
@@ -70,5 +80,7 @@
     "channelAvatar": "https://picsum.photos/seed/techtutorials/40/40",
     "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     "description": "Learn how to fetch and display data from external APIs in your web applications."
+    "category": "coding"
+
   }
 ]
