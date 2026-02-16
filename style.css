@@ -151,3 +151,55 @@ video {
 .categories button.active {
   background-color: #ff4444;
 }
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100%;
+  background-color: #202020;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.sidebar a:hover {
+  color: #ff4444;
+}
+
+.open-sidebar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #202020;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-size: 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.close-sidebar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 22px;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.sidebar.open {
+  left: 0;
+}
