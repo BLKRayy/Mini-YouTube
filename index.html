@@ -8,13 +8,64 @@
 </head>
 <body>
 
-  <!-- SIDEBAR (Homepage Only) -->
+  <!-- MAINTENANCE OVERLAY -->
+  <div id="maintenanceOverlay" class="maintenance-overlay hidden">
+    <div class="maintenance-stripes maintenance-stripes-top"></div>
+    <div class="maintenance-stripes maintenance-stripes-bottom"></div>
+
+    <div class="maintenance-panel">
+      <div class="maintenance-icon">⚠</div>
+      <h1 class="maintenance-title">SYSTEM MAINTENANCE</h1>
+      <p class="maintenance-subtitle">UPGRADING INFRASTRUCTURE</p>
+
+      <p class="maintenance-text">
+        We’re currently performing scheduled maintenance to improve your experience.
+        Our systems will be back online shortly...
+      </p>
+
+      <div class="maintenance-countdown">
+        <div class="count-block">
+          <span id="mh">02</span>
+          <label>HOURS</label>
+        </div>
+        <div class="count-block">
+          <span id="mm">30</span>
+          <label>MINUTES</label>
+        </div>
+        <div class="count-block">
+          <span id="ms">00</span>
+          <label>SECONDS</label>
+        </div>
+      </div>
+
+      <div class="maintenance-progress">
+        <div class="progress-header">
+          <span>MAINTENANCE PROGRESS</span>
+          <span id="maintenanceProgressLabel">70%</span>
+        </div>
+        <div class="progress-bar">
+          <div id="maintenanceProgressBar" class="progress-fill"></div>
+          <div class="progress-shine"></div>
+        </div>
+      </div>
+
+      <div class="maintenance-console">
+        <div class="console-title">CONSOLE MESSAGES</div>
+        <div id="maintenanceConsole" class="console-body">
+          <!-- messages injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
   <div class="sidebar" id="sidebar">
     <button class="close-sidebar ripple" id="closeSidebar">✕</button>
     <a href="index.html">Home</a>
     <a href="#">Trending</a>
     <a href="#">Subscriptions</a>
     <a href="#">Library</a>
+    <a href="admin.html" class="admin-link">Admin Panel</a>
   </div>
 
   <!-- OPEN SIDEBAR BUTTON -->
