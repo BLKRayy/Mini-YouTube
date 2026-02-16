@@ -13,26 +13,32 @@
 
   <a href="index.html" class="back ripple">← Back</a>
 
-  <div class="video-container fade-in">
-    <video id="videoPlayer" controls></video>
-  </div>
+  <div class="video-page-layout">
+    <div class="video-main">
+      <div class="video-container fade-in">
+        <video id="videoPlayer" controls></video>
+      </div>
 
-  <div class="video-details fade-in">
-    <h1 id="videoTitle"></h1>
-    <p id="videoViews"></p>
-    <p id="videoDate"></p>
+      <div class="video-details fade-in">
+        <h1 id="videoTitle"></h1>
+        <p id="videoViews"></p>
+        <p id="videoDate"></p>
 
-    <div class="channel-info">
-      <img id="videoChannelAvatar" alt="Channel Avatar">
-      <span id="videoChannel"></span>
+        <div class="channel-info">
+          <img id="videoChannelAvatar" alt="Channel Avatar">
+          <span id="videoChannel"></span>
+        </div>
+
+        <h2>Description</h2>
+        <p id="videoDescription"></p>
+      </div>
     </div>
 
-    <h2>Description</h2>
-    <p id="videoDescription"></p>
+    <div class="video-side">
+      <h2 class="fade-in">Recommended Videos</h2>
+      <div class="recommended-grid fade-in"></div>
+    </div>
   </div>
-
-  <h2 style="padding-left:20px;" class="fade-in">Recommended Videos</h2>
-  <div class="recommended-grid fade-in"></div>
 
   <script src="script.js"></script>
 </body>
