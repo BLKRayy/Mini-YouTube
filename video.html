@@ -9,15 +9,15 @@
 <body>
 
   <!-- THEME TOGGLE -->
-  <button class="theme-toggle" id="themeToggle">🌓</button>
+  <button class="theme-toggle ripple" id="themeToggle">🌓</button>
 
-  <a href="index.html" class="back">← Back</a>
+  <a href="index.html" class="back ripple">← Back</a>
 
-  <div class="video-container">
+  <div class="video-container fade-in">
     <video id="videoPlayer" controls></video>
   </div>
 
-  <div class="video-details">
+  <div class="video-details fade-in">
     <h1 id="videoTitle"></h1>
     <p id="videoViews"></p>
     <p id="videoDate"></p>
@@ -31,8 +31,8 @@
     <p id="videoDescription"></p>
   </div>
 
-  <h2 style="padding-left:20px;">Recommended Videos</h2>
-  <div class="recommended-grid"></div>
+  <h2 style="padding-left:20px;" class="fade-in">Recommended Videos</h2>
+  <div class="recommended-grid fade-in"></div>
 
   <script src="script.js"></script>
 </body>
