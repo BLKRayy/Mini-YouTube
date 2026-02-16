@@ -1,4 +1,26 @@
 /*******************************
+ * THEME SYSTEM (Dark / Light Mode)
+ *******************************/
+function applyTheme(theme) {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+}
+
+const savedTheme = localStorage.getItem("theme") || "dark";
+applyTheme(savedTheme);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const themeToggle = document.getElementById("themeToggle");
+
+    themeToggle.addEventListener("click", () => {
+        const current = document.body.getAttribute("data-theme");
+        const next = current === "dark" ? "light" : "dark";
+        applyTheme(next);
+    });
+});
+
+
+/*******************************
  * HOMEPAGE: VIDEO LOADING + SEARCH + CATEGORIES + SIDEBAR
  *******************************/
 if (document.querySelector(".video-grid")) {
@@ -10,9 +32,6 @@ if (document.querySelector(".video-grid")) {
             const searchInput = document.getElementById("searchInput");
             const categoryButtons = document.querySelectorAll(".categories button");
 
-            /*******************************
-             * RENDER VIDEOS (Reusable)
-             *******************************/
             function renderVideos(list) {
                 grid.innerHTML = "";
 
@@ -33,12 +52,8 @@ if (document.querySelector(".video-grid")) {
                 });
             }
 
-            // Initial render
             renderVideos(videos);
 
-            /*******************************
-             * LIVE SEARCH
-             *******************************/
             searchInput.addEventListener("input", () => {
                 const term = searchInput.value.toLowerCase();
 
@@ -51,21 +66,14 @@ if (document.querySelector(".video-grid")) {
                 renderVideos(filtered);
             });
 
-            /*******************************
-             * CATEGORY FILTERING
-             *******************************/
             categoryButtons.forEach(btn => {
                 btn.addEventListener("click", () => {
-
-                    // Update active button
                     categoryButtons.forEach(b => b.classList.remove("active"));
                     btn.classList.add("active");
 
                     const category = btn.dataset.category;
-
                     let filtered = videos;
 
-                    // Filter by category
                     if (category !== "all") {
                         filtered = videos.filter(video =>
                             video.category &&
@@ -73,7 +81,6 @@ if (document.querySelector(".video-grid")) {
                         );
                     }
 
-                    // Apply search term too
                     const term = searchInput.value.toLowerCase();
                     if (term.length > 0) {
                         filtered = filtered.filter(video =>
@@ -87,9 +94,6 @@ if (document.querySelector(".video-grid")) {
                 });
             });
 
-            /*******************************
-             * SIDEBAR TOGGLE
-             *******************************/
             const sidebar = document.getElementById("sidebar");
             const openSidebar = document.getElementById("openSidebar");
             const closeSidebar = document.getElementById("closeSidebar");
@@ -101,10 +105,8 @@ if (document.querySelector(".video-grid")) {
             closeSidebar.addEventListener("click", () => {
                 sidebar.classList.remove("open");
             });
-        })
-        .catch(error => console.error("Error loading videos:", error));
+        });
 }
-
 
 
 /*******************************
@@ -119,15 +121,8 @@ if (document.getElementById("videoPlayer")) {
         .then(response => response.json())
         .then(videos => {
             const video = videos.find(v => v.id == videoId);
+            if (!video) return;
 
-            if (!video) {
-                console.error("Video not found");
-                return;
-            }
-
-            /*******************************
-             * LOAD MAIN VIDEO
-             *******************************/
             document.getElementById("videoPlayer").src = video.videoUrl;
             document.getElementById("videoTitle").textContent = video.title;
             document.getElementById("videoViews").textContent = video.views + " views";
@@ -136,17 +131,12 @@ if (document.getElementById("videoPlayer")) {
             document.getElementById("videoDescription").textContent = video.description;
             document.getElementById("videoChannelAvatar").src = video.channelAvatar;
 
-            /*******************************
-             * RECOMMENDED VIDEOS
-             *******************************/
             const recommendedGrid = document.querySelector(".recommended-grid");
 
-            // Filter by same category
             let recommended = videos.filter(v =>
                 v.category === video.category && v.id != video.id
             );
 
-            // If not enough, fill with random videos
             if (recommended.length < 4) {
                 const others = videos.filter(v => v.id != video.id);
                 while (recommended.length < 4 && others.length > 0) {
@@ -155,7 +145,6 @@ if (document.getElementById("videoPlayer")) {
                 }
             }
 
-            // Render recommended videos
             recommended.forEach(rec => {
                 const card = document.createElement("a");
                 card.classList.add("recommended-card");
@@ -171,6 +160,5 @@ if (document.getElementById("videoPlayer")) {
 
                 recommendedGrid.appendChild(card);
             });
-        })
-        .catch(error => console.error("Error loading video:", error));
+        });
 }
