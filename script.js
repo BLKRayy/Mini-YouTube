@@ -93,7 +93,7 @@ if (document.querySelector(".video-grid")) {
 
 
 /*******************************
- * VIDEO PAGE: LOAD SELECTED VIDEO
+ * VIDEO PAGE: LOAD SELECTED VIDEO + RECOMMENDED VIDEOS
  *******************************/
 if (document.getElementById("videoPlayer")) {
 
@@ -110,18 +110,52 @@ if (document.getElementById("videoPlayer")) {
                 return;
             }
 
-            // Fill in the video player
+            /*******************************
+             * LOAD MAIN VIDEO
+             *******************************/
             document.getElementById("videoPlayer").src = video.videoUrl;
-
-            // Fill in text fields
             document.getElementById("videoTitle").textContent = video.title;
             document.getElementById("videoViews").textContent = video.views + " views";
             document.getElementById("videoDate").textContent = video.uploadDate;
             document.getElementById("videoChannel").textContent = video.channel;
             document.getElementById("videoDescription").textContent = video.description;
-
-            // Channel avatar
             document.getElementById("videoChannelAvatar").src = video.channelAvatar;
+
+            /*******************************
+             * RECOMMENDED VIDEOS
+             *******************************/
+            const recommendedGrid = document.querySelector(".recommended-grid");
+
+            // Filter by same category
+            let recommended = videos.filter(v =>
+                v.category === video.category && v.id != video.id
+            );
+
+            // If not enough, fill with random videos
+            if (recommended.length < 4) {
+                const others = videos.filter(v => v.id != video.id);
+                while (recommended.length < 4 && others.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * others.length);
+                    recommended.push(others.splice(randomIndex, 1)[0]);
+                }
+            }
+
+            // Render recommended videos
+            recommended.forEach(rec => {
+                const card = document.createElement("a");
+                card.classList.add("recommended-card");
+                card.href = `video.html?id=${rec.id}`;
+
+                card.innerHTML = `
+                    <img src="${rec.thumbnail}" alt="${rec.title}">
+                    <div class="recommended-info">
+                        <h3>${rec.title}</h3>
+                        <p>${rec.views} views • ${rec.uploadDate}</p>
+                    </div>
+                `;
+
+                recommendedGrid.appendChild(card);
+            });
         })
         .catch(error => console.error("Error loading video:", error));
 }
