@@ -1,25 +1,47 @@
+/* ============================================================
+   GLOBAL VARIABLES — SITE + ADMIN (Claude Neon Palette)
+   ============================================================ */
+
 :root {
+  /* Core site colors (homepage + video page) */
   --bg-dark: #05060a;
   --bg-dark-alt: #0b0d14;
   --bg-light: #f5f5f5;
   --text-dark: #f5f7ff;
   --text-light: #111;
+
+  /* Accent for homepage/video (cyan only) */
   --accent: #00e5ff;
   --accent-soft: rgba(0, 229, 255, 0.25);
-  --danger: #ff4444;
-  --card-dark: #111320;
-  --card-light: #ffffff;
+
+  /* Claude neon palette (admin + maintenance) */
+  --neon-cyan: #00eaff;
+  --neon-magenta: #ff00ff;
+  --neon-yellow: #ffcc00;
+  --neon-green: #00ff88;
+
+  /* Admin panel backgrounds */
+  --admin-bg-1: #0a0d18;
+  --admin-bg-2: #05060a;
+  --admin-panel-bg: radial-gradient(circle at top left, #181d35 0, #05060a 60%);
+
+  /* Shadows + transitions */
   --shadow-neon: 0 0 18px rgba(0, 229, 255, 0.6);
   --transition-fast: 0.2s ease;
   --transition-med: 0.3s ease;
 }
 
+/* ============================================================
+   GLOBAL RESET
+   ============================================================ */
+
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: radial-gradient(circle at top, #101528 0, #05060a 55%, #020308 100%);
   color: var(--text-dark);
@@ -27,13 +49,58 @@ body {
   transition: background var(--transition-med), color var(--transition-med);
 }
 
-/* LIGHT THEME */
+/* Light theme override */
 body[data-theme="light"] {
   background: var(--bg-light);
   color: var(--text-light);
 }
 
-/* HEADER */
+/* ============================================================
+   FADE-IN ANIMATION
+   ============================================================ */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeInUp 0.4s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   RIPPLE EFFECT
+   ============================================================ */
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
 .app-header {
   text-align: center;
   padding: 26px 20px 14px;
@@ -55,7 +122,10 @@ body[data-theme="light"] .app-header {
   margin-right: 8px;
 }
 
-/* SEARCH BAR */
+/* ============================================================
+   SEARCH BAR
+   ============================================================ */
+
 .search-bar {
   width: 92%;
   max-width: 620px;
@@ -87,7 +157,10 @@ body[data-theme="light"] .search-bar {
   box-shadow: none;
 }
 
-/* CATEGORIES */
+/* ============================================================
+   CATEGORIES
+   ============================================================ */
+
 .categories {
   display: flex;
   gap: 10px;
@@ -129,7 +202,10 @@ body[data-theme="light"] .categories button.active {
   color: #020308;
 }
 
-/* VIDEO GRID */
+/* ============================================================
+   VIDEO GRID + CARDS
+   ============================================================ */
+
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -188,7 +264,10 @@ body[data-theme="light"] .video-views {
   color: #666;
 }
 
-/* SIDEBAR */
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -258,7 +337,10 @@ body[data-theme="light"] .open-sidebar {
   box-shadow: none;
 }
 
-/* THEME TOGGLE */
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+
 .theme-toggle {
   position: fixed;
   top: 18px;
@@ -281,7 +363,10 @@ body[data-theme="light"] .theme-toggle {
   box-shadow: none;
 }
 
-/* BACK LINK */
+/* ============================================================
+   VIDEO PAGE LAYOUT
+   ============================================================ */
+
 .back {
   display: inline-block;
   margin: 60px 20px 10px;
@@ -290,7 +375,6 @@ body[data-theme="light"] .theme-toggle {
   font-weight: 500;
 }
 
-/* VIDEO PAGE LAYOUT */
 .video-page-layout {
   display: grid;
   grid-template-columns: 2.2fr 1.4fr;
@@ -322,7 +406,6 @@ body[data-theme="light"] .theme-toggle {
   border-radius: 50%;
 }
 
-/* RECOMMENDED */
 .recommended-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -375,110 +458,942 @@ body[data-theme="light"] .recommended-card {
 body[data-theme="light"] .recommended-info p {
   color: #666;
 }
+/* ============================================================
+   MAINTENANCE MODE — CLAUDE NEON VERSION
+   ============================================================ */
 
-/* ANIMATIONS */
-.fade-in {
-  opacity: 0;
-  transform: translateY(6px);
-  animation: fadeInUp 0.4s forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* RIPPLE */
-.ripple {
-  position: relative;
+/* Fullscreen overlay */
+.maintenance-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #1b0b0b 0, #05060a 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
   overflow: hidden;
 }
 
-.ripple-effect {
-  position: absolute;
-  border-radius: 50%;
-  background: var(--accent-soft);
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-  pointer-events: none;
+.maintenance-overlay.hidden {
+  display: none;
 }
 
-@keyframes ripple {
-  to {
-    transform: scale(3.5);
-    opacity: 0;
+/* ============================================================
+   WARNING STRIPES (TOP + BOTTOM)
+   ============================================================ */
+
+.maintenance-stripes {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--neon-yellow) 0,
+    var(--neon-yellow) 10px,
+    #1b0b0b 10px,
+    #1b0b0b 20px
+  );
+  opacity: 0.7;
+  animation: stripes-move 1.2s linear infinite;
+}
+
+.maintenance-stripes-top {
+  top: 0;
+}
+
+.maintenance-stripes-bottom {
+  bottom: 0;
+}
+
+@keyframes stripes-move {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+/* ============================================================
+   MAINTENANCE PANEL
+   ============================================================ */
+
+.maintenance-panel {
+  position: relative;
+  text-align: center;
+  padding: 26px 22px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 204, 0, 0.8);
+  box-shadow: 0 0 26px rgba(255, 204, 0, 0.7);
+  background: radial-gradient(circle at top, #2a1414 0, #05060a 60%);
+  max-width: 520px;
+  width: 92%;
+}
+
+/* ============================================================
+   WARNING ICON
+   ============================================================ */
+
+.maintenance-icon {
+  font-size: 32px;
+  margin-bottom: 6px;
+  animation: pulse-icon 1.4s infinite;
+  color: var(--neon-yellow);
+}
+
+@keyframes pulse-icon {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(-5deg); }
+}
+
+/* ============================================================
+   TITLE + SUBTITLE
+   ============================================================ */
+
+.maintenance-title {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.18em;
+  background: linear-gradient(90deg, var(--neon-yellow), #ff8800, var(--neon-yellow));
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: title-shift 3s linear infinite;
+}
+
+@keyframes title-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 0; }
+}
+
+.maintenance-subtitle {
+  margin: 4px 0 10px;
+  font-size: 13px;
+  color: #ffef9a;
+  letter-spacing: 0.12em;
+}
+
+.maintenance-text {
+  font-size: 13px;
+  color: #f5f5f5;
+  margin-bottom: 14px;
+}
+
+/* ============================================================
+   COUNTDOWN TIMER
+   ============================================================ */
+
+.maintenance-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.count-block {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 204, 0, 0.7);
+  min-width: 70px;
+  background: rgba(20, 10, 10, 0.4);
+}
+
+.count-block span {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--neon-yellow);
+}
+
+.count-block label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #ffef9a;
+}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+
+.maintenance-progress {
+  margin-bottom: 14px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--neon-yellow);
+}
+
+.progress-bar {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: #2b1f1f;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 70%;
+  background: linear-gradient(90deg, #ff8800, var(--neon-yellow));
+  transition: width 0.3s linear;
+}
+
+.progress-shine {
+  position: absolute;
+  top: 0;
+  left: -40px;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: shine-move 1.4s linear infinite;
+}
+
+@keyframes shine-move {
+  from { left: -40px; }
+  to { left: 100%; }
+}
+
+/* ============================================================
+   CONSOLE LOG PANEL
+   ============================================================ */
+
+.maintenance-console {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.console-title {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #ffef9a;
+}
+
+.console-body {
+  max-height: 120px;
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 204, 0, 0.5);
+  padding: 6px 8px;
+  font-size: 12px;
+  background: rgba(10, 5, 5, 0.9);
+  color: var(--neon-yellow);
+}
+
+.console-body div {
+  margin-bottom: 4px;
+}
+/* ============================================================
+   ADMIN LOGIN SCREEN — NEON CYBER TERMINAL
+   ============================================================ */
+
+/* Full-screen login container */
+.admin-login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Animated grid background */
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 234, 255, 0.08) 0px,
+      rgba(0, 234, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 0, 255, 0.08) 0px,
+      rgba(255, 0, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    radial-gradient(circle at top, #0a0d18 0%, #05060a 70%);
+  animation: admin-grid-move 18s linear infinite;
+}
+
+@keyframes admin-grid-move {
+  0% { background-position: 0 0, 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, 0 200px, 200px 0, 0 0; }
+}
+
+/* Login panel */
+.admin-login-panel {
+  width: 90%;
+  max-width: 420px;
+  padding: 26px 22px 18px;
+  border-radius: 18px;
+
+  background: radial-gradient(circle at top left, #181d35 0, #05060a 60%);
+  border: 1px solid rgba(0, 234, 255, 0.6);
+  box-shadow:
+    0 0 26px rgba(0, 234, 255, 0.7),
+    0 0 18px rgba(255, 0, 255, 0.4),
+    0 0 12px rgba(255, 204, 0, 0.3);
+}
+
+/* Logo */
+.admin-logo {
+  text-align: center;
+  margin: 0 0 6px;
+  letter-spacing: 0.18em;
+  font-size: 20px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 12px rgba(0, 234, 255, 0.8);
+  animation: admin-logo-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes admin-logo-pulse {
+  0%, 100% { opacity: 1; text-shadow: 0 0 12px rgba(0, 234, 255, 0.8); }
+  50% { opacity: 0.7; text-shadow: 0 0 20px rgba(255, 0, 255, 0.8); }
+}
+
+/* Subtitle */
+.admin-login-panel h2 {
+  text-align: center;
+  margin: 0 0 18px;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: var(--neon-magenta);
+  text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+}
+
+/* Section title */
+.admin-login-section h3 {
+  margin: 0 0 4px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--neon-yellow);
+}
+
+.admin-sub {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: #9aa0c2;
+}
+
+/* Labels */
+.admin-login-section label {
+  display: block;
+  font-size: 12px;
+  margin: 10px 0 4px;
+  letter-spacing: 0.08em;
+  color: var(--neon-cyan);
+}
+
+/* Inputs */
+.admin-login-section input[type="text"],
+.admin-login-section input[type="password"] {
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 234, 255, 0.5);
+  background: rgba(5, 7, 15, 0.9);
+  color: var(--text-dark);
+  font-size: 13px;
+  outline: none;
+  transition: border var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-login-section input:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 12px rgba(0, 234, 255, 0.6);
+}
+
+/* Remember me */
+.admin-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 12px;
+  font-size: 12px;
+  color: var(--neon-green);
+}
+
+.admin-remember input {
+  accent-color: var(--neon-green);
+}
+
+/* Login button */
+.admin-primary-btn {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 999px;
+  border: 1px solid var(--neon-cyan);
+  background: var(--neon-cyan);
+  color: #020308;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(0, 234, 255, 0.8);
+}
+
+/* Error message */
+.admin-error {
+  color: #ff6666;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Footer */
+.admin-footer {
+  margin-top: 14px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--neon-yellow);
+  opacity: 0.8;
+}
+
+/* Login links */
+.admin-login-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+.admin-login-links a {
+  color: var(--neon-magenta);
+  text-decoration: none;
+  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.admin-login-links a:hover {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px rgba(0, 234, 255, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .admin-login-panel {
+    padding: 20px 16px;
   }
 }
+/* ============================================================
+   ADMIN DASHBOARD — LAYOUT + GRID BACKGROUND
+   ============================================================ */
 
-/* RESPONSIVE */
+.admin-dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* Animated neon grid background */
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 234, 255, 0.06) 0px,
+      rgba(0, 234, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 0, 255, 0.06) 0px,
+      rgba(255, 0, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    radial-gradient(circle at top, #0a0d18 0%, #05060a 70%);
+  animation: admin-grid-move 22s linear infinite;
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.admin-title {
+  font-size: 16px;
+  letter-spacing: 0.16em;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.7);
+}
+
+.admin-subtitle {
+  font-size: 12px;
+  color: var(--neon-magenta);
+}
+
+/* Logout button */
+.admin-secondary-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--neon-cyan);
+  background: transparent;
+  color: var(--neon-cyan);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-secondary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(0, 234, 255, 0.7);
+}
+
+/* ============================================================
+   ADMIN LAYOUT GRID
+   ============================================================ */
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 60px);
+}
+
+/* ============================================================
+   SIDEBAR NAVIGATION
+   ============================================================ */
+
+.admin-sidebar {
+  border-right: 1px solid rgba(0, 234, 255, 0.3);
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(5, 7, 15, 0.6);
+  backdrop-filter: blur(6px);
+}
+
+.admin-nav-item {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--neon-cyan);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background var(--transition-fast), border var(--transition-fast), transform var(--transition-fast);
+}
+
+.admin-nav-item:hover {
+  transform: translateX(3px);
+  border-color: rgba(0, 234, 255, 0.4);
+}
+
+.admin-nav-item.active {
+  border-color: rgba(0, 234, 255, 0.8);
+  background: radial-gradient(circle at left, rgba(0, 234, 255, 0.2), transparent);
+}
+
+/* ============================================================
+   MAIN PANEL AREA
+   ============================================================ */
+
+.admin-main {
+  padding: 16px 18px 24px;
+}
+
+.admin-panel {
+  display: none;
+}
+
+.admin-panel.active {
+  display: block;
+}
+
+/* ============================================================
+   DASHBOARD STATS CARDS
+   ============================================================ */
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.admin-stat-card {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 234, 255, 0.5);
+  background: radial-gradient(circle at top left, #181d35 0, #05060a 60%);
+  box-shadow:
+    0 0 18px rgba(0, 234, 255, 0.4),
+    0 0 12px rgba(255, 0, 255, 0.2),
+    0 0 10px rgba(255, 204, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--neon-magenta);
+  letter-spacing: 0.12em;
+}
+
+.stat-value {
+  margin-top: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.7);
+}
+
+/* ============================================================
+   TOGGLE SWITCHES
+   ============================================================ */
+
+.admin-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+  color: var(--neon-yellow);
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #444;
+  transition: .2s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .2s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--neon-green);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* ============================================================
+   UPLOAD PANEL
+   ============================================================ */
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.admin-form-group {
+  margin: 10px 0;
+}
+
+.admin-form-group label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: var(--neon-magenta);
+}
+
+.admin-form-group input,
+.admin-form-group textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 234, 255, 0.5);
+  background: rgba(5, 7, 15, 0.9);
+  color: var(--text-dark);
+  font-size: 13px;
+  outline: none;
+  transition: border var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-form-group input:focus,
+.admin-form-group textarea:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 12px rgba(0, 234, 255, 0.6);
+}
+
+/* Upload button */
+#uploadVideoBtn {
+  margin-top: 10px;
+}
+
+/* Status message */
+.admin-status-msg {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--neon-yellow);
+}
+
+/* ============================================================
+   EDIT VIDEOS LIST
+   ============================================================ */
+
+.admin-video-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-video-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 234, 255, 0.4);
+  background: radial-gradient(circle at left, rgba(0, 234, 255, 0.15), #05060a);
+  box-shadow: 0 0 12px rgba(0, 234, 255, 0.2);
+}
+
+.admin-video-title {
+  font-size: 14px;
+  color: var(--neon-cyan);
+}
+
+.admin-video-meta {
+  font-size: 12px;
+  color: var(--neon-magenta);
+}
+
+.admin-video-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.admin-icon-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(0, 234, 255, 0.6);
+  background: transparent;
+  color: var(--neon-cyan);
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.admin-icon-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(0, 234, 255, 0.6);
+}
+
+/* ============================================================
+   SYSTEM SETTINGS PANEL
+   ============================================================ */
+
+.admin-settings-grid {
+  margin-top: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 234, 255, 0.4);
+  padding: 10px 12px;
+  background: rgba(5, 7, 15, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.admin-setting-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: var(--neon-yellow);
+}
+
+.admin-setting-row:last-child {
+  border-bottom: none;
+}
+/* ============================================================
+   RESPONSIVE — GLOBAL SITE
+   ============================================================ */
+
 @media (max-width: 900px) {
   .video-page-layout {
     grid-template-columns: 1fr;
   }
 
-  .video-side {
-    margin-top: 10px;
+  .recommended-card img {
+    width: 120px;
+    height: 70px;
   }
 }
 
 @media (max-width: 700px) {
-  .app-header {
-    font-size: 22px;
-    padding-top: 26px;
+  .video-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 
   .search-bar {
-    width: 94%;
-    font-size: 15px;
+    max-width: 90%;
   }
 
-  .video-grid {
-    grid-template-columns: 1fr;
-    padding: 14px;
-  }
-
-  .video-card img.thumbnail {
-    height: 180px;
-  }
-
-  .open-sidebar {
-    top: 14px;
-    left: 14px;
-  }
-
-  .theme-toggle {
-    top: 14px;
-    right: 14px;
-  }
-
-  .back {
-    margin-top: 56px;
-  }
-
-  .video-page-layout {
-    padding: 10px 12px 24px;
+  .app-header {
+    font-size: 24px;
   }
 }
 
-@media (max-width: 480px) {
-  .categories {
-    padding-inline: 10px;
-    gap: 6px;
-  }
-
-  .categories button {
-    padding: 6px 12px;
-    font-size: 13px;
+@media (max-width: 500px) {
+  .video-card img.thumbnail {
+    height: 120px;
   }
 
   .recommended-card img {
-    width: 130px;
-    height: 74px;
+    width: 100px;
+    height: 60px;
   }
 
-  .recommended-info h3 {
-    font-size: 14px;
+  .theme-toggle,
+  .open-sidebar {
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — SIDEBAR
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .sidebar a {
+    font-size: 16px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — MAINTENANCE MODE
+   ============================================================ */
+
+@media (max-width: 520px) {
+  .maintenance-panel {
+    padding: 20px 16px;
+  }
+
+  .maintenance-title {
+    font-size: 18px;
+  }
+
+  .maintenance-countdown {
+    gap: 10px;
+  }
+
+  .count-block {
+    min-width: 60px;
+    padding: 6px 8px;
+  }
+
+  .count-block span {
+    font-size: 16px;
+  }
+
+  .console-body {
+    max-height: 100px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — ADMIN LOGIN SCREEN
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .admin-login-panel {
+    padding: 20px 16px;
+  }
+
+  .admin-logo {
+    font-size: 18px;
+  }
+
+  .admin-login-panel h2 {
+    font-size: 13px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — ADMIN DASHBOARD
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+    padding: 10px;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 234, 255, 0.3);
+  }
+
+  .admin-nav-item {
+    white-space: nowrap;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .admin-main {
+    padding: 14px 12px 20px;
+  }
+
+  .admin-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+
+  .admin-stat-card {
+    padding: 12px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — ADMIN PANELS
+   ============================================================ */
+
+@media (max-width: 500px) {
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-video-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .admin-video-actions {
+    align-self: flex-end;
   }
 }
