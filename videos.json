@@ -1,74 +1,62 @@
 [
   {
     "id": 1,
-    "title": "Building Your First Web Application",
-    "views": "1.2M",
-    "uploadDate": "2 weeks ago",
+    "title": "Building Your First Web App",
     "channel": "Code Academy",
-    "channelAvatar": "images/channel1.jpg",
+    "category": "coding",
+    "views": "1200000",
+    "uploadDate": "2 weeks ago",
     "thumbnail": "images/thumb1.jpg",
     "videoUrl": "videos/video1.mp4",
-    "description": "Learn the fundamentals of web development by building your first interactive application from scratch.",
-    "category": "coding"
+    "description": "Learn how to build your first web application from scratch.",
+    "channelAvatar": "images/avatar1.png"
   },
   {
     "id": 2,
-    "title": "CSS Grid Layout Tutorial - Complete Guide",
-    "views": "856K",
+    "title": "CSS Grid Layout Tutorial",
+    "channel": "Design Lab",
+    "category": "coding",
+    "views": "856000",
     "uploadDate": "1 month ago",
-    "channel": "Design Masters",
-    "channelAvatar": "images/channel2.jpg",
     "thumbnail": "images/thumb2.jpg",
     "videoUrl": "videos/video2.mp4",
-    "description": "Master modern CSS Grid layout with this complete, hands-on guide.",
-    "category": "coding"
+    "description": "Master modern CSS Grid layout techniques.",
+    "channelAvatar": "images/avatar2.png"
   },
   {
     "id": 3,
-    "title": "JavaScript ES6+ Features You Must Know",
-    "views": "2.1M",
+    "title": "JavaScript ES6+ Features",
+    "channel": "JS Mastery",
+    "category": "coding",
+    "views": "2100000",
     "uploadDate": "3 days ago",
-    "channel": "JS Pro",
-    "channelAvatar": "images/channel3.jpg",
     "thumbnail": "images/thumb3.jpg",
     "videoUrl": "videos/video3.mp4",
-    "description": "A fast-paced walkthrough of the most important ES6+ features.",
-    "category": "coding"
+    "description": "A deep dive into modern JavaScript features.",
+    "channelAvatar": "images/avatar3.png"
   },
   {
     "id": 4,
-    "title": "Responsive Web Design in 2024",
-    "views": "543K",
+    "title": "Responsive Web Design 2024",
+    "channel": "Frontend Pro",
+    "category": "coding",
+    "views": "543000",
     "uploadDate": "1 week ago",
-    "channel": "Frontend Lab",
-    "channelAvatar": "images/channel4.jpg",
     "thumbnail": "images/thumb4.jpg",
     "videoUrl": "videos/video4.mp4",
-    "description": "Design responsive layouts that look great on any device.",
-    "category": "tutorial"
+    "description": "Build fully responsive layouts for all devices.",
+    "channelAvatar": "images/avatar4.png"
   },
   {
     "id": 5,
     "title": "Git & GitHub for Beginners",
-    "views": "1.8M",
+    "channel": "Dev Tools",
+    "category": "tutorial",
+    "views": "1800000",
     "uploadDate": "2 months ago",
-    "channel": "Dev Tools Hub",
-    "channelAvatar": "images/channel5.jpg",
     "thumbnail": "images/thumb5.jpg",
     "videoUrl": "videos/video5.mp4",
-    "description": "Version control basics and GitHub workflows explained simply.",
-    "category": "tutorial"
-  },
-  {
-    "id": 6,
-    "title": "API Integration Made Simple",
-    "views": "967K",
-    "uploadDate": "5 days ago",
-    "channel": "Backend Basics",
-    "channelAvatar": "images/channel6.jpg",
-    "thumbnail": "images/thumb6.jpg",
-    "videoUrl": "videos/video6.mp4",
-    "description": "Learn how to connect your app to external APIs step by step.",
-    "category": "coding"
+    "description": "Learn version control with Git and GitHub.",
+    "channelAvatar": "images/avatar5.png"
   }
 ]
