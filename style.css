@@ -125,3 +125,29 @@ video {
 .search-bar::placeholder {
   color: #aaa;
 }
+.categories {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.categories button {
+  background-color: #202020;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.categories button:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+.categories button.active {
+  background-color: #ff4444;
+}
