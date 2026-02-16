@@ -1,1 +1,74 @@
-
+[
+  {
+    "id": 1,
+    "title": "Building Your First Web Application",
+    "thumbnail": "https://picsum.photos/seed/video1/320/180",
+    "duration": "12:34",
+    "views": "1.2M",
+    "uploadDate": "2 weeks ago",
+    "channel": "Code Academy",
+    "channelAvatar": "https://picsum.photos/seed/codeacademy/40/40",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "description": "Learn the fundamentals of web development by building your first interactive application from scratch."
+  },
+  {
+    "id": 2,
+    "title": "CSS Grid Layout Tutorial - Complete Guide",
+    "thumbnail": "https://picsum.photos/seed/video2/320/180",
+    "duration": "18:45",
+    "views": "856K",
+    "uploadDate": "1 month ago",
+    "channel": "Design Masters",
+    "channelAvatar": "https://picsum.photos/seed/designmasters/40/40",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "description": "Master CSS Grid with this comprehensive tutorial covering all properties and real-world examples."
+  },
+  {
+    "id": 3,
+    "title": "JavaScript ES6+ Features You Must Know",
+    "thumbnail": "https://picsum.photos/seed/video3/320/180",
+    "duration": "15:20",
+    "views": "2.1M",
+    "uploadDate": "3 days ago",
+    "channel": "JS Weekly",
+    "channelAvatar": "https://picsum.photos/seed/jsweekly/40/40",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    "description": "Explore modern JavaScript features including arrow functions, destructuring, promises, and async/await."
+  },
+  {
+    "id": 4,
+    "title": "Responsive Web Design in 2024",
+    "thumbnail": "https://picsum.photos/seed/video4/320/180",
+    "duration": "22:10",
+    "views": "543K",
+    "uploadDate": "1 week ago",
+    "channel": "Web Dev Pro",
+    "channelAvatar": "https://picsum.photos/seed/webdevpro/40/40",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "description": "Learn how to create beautiful, responsive websites that work perfectly on all devices."
+  },
+  {
+    "id": 5,
+    "title": "Git & GitHub for Beginners",
+    "thumbnail": "https://picsum.photos/seed/video5/320/180",
+    "duration": "25:30",
+    "views": "1.8M",
+    "uploadDate": "2 months ago",
+    "channel": "Code Academy",
+    "channelAvatar": "https://picsum.photos/seed/codeacademy/40/40",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    "description": "Complete guide to version control with Git and collaborative development using GitHub."
+  },
+  {
+    "id": 6,
+    "title": "API Integration Made Simple",
+    "thumbnail": "https://picsum.photos/seed/video6/320/180",
+    "duration": "16:55",
+    "views": "967K",
+    "uploadDate": "5 days ago",
+    "channel": "Tech Tutorials",
+    "channelAvatar": "https://picsum.photos/seed/techtutorials/40/40",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    "description": "Learn how to fetch and display data from external APIs in your web applications."
+  }
+]
