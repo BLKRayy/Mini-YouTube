@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini YouTube Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+
+  <!-- LOGIN SCREEN -->
+  <div id="adminLoginScreen" class="admin-login-screen">
+    <div class="admin-login-panel">
+      <h1 class="admin-logo">MINI YOUTUBE</h1>
+      <h2>ADMIN TERMINAL ACCESS</h2>
+
+      <div class="admin-login-section">
+        <h3>SYSTEM ACCESS</h3>
+        <p class="admin-sub">ENTER YOUR CREDENTIALS</p>
+
+        <label>USERNAME</label>
+        <input type="text" id="adminUsername" placeholder="Enter username...">
+
+        <label>PASSWORD</label>
+        <input type="password" id="adminPassword" placeholder="Enter password...">
+
+        <div class="admin-remember">
+          <input type="checkbox" id="adminRemember">
+          <label for="adminRemember">REMEMBER ME</label>
+        </div>
+
+        <button id="adminLoginBtn" class="ripple admin-primary-btn">INITIALIZE LOGIN</button>
+
+        <div id="adminLoginError" class="admin-error"></div>
+
+        <div class="admin-login-links">
+          <a href="#">FORGOT PASSWORD?</a>
+          <a href="#">REQUEST ACCESS</a>
+        </div>
+      </div>
+
+      <div class="admin-footer">
+        SYSTEM STATUS: ONLINE | BUILD: V2.4.1
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div id="adminDashboard" class="admin-dashboard hidden">
+    <header class="admin-header">
+      <div>
+        <div class="admin-title">ADMIN TERMINAL</div>
+        <div class="admin-subtitle">Mini YouTube Control Center</div>
+      </div>
+      <button id="adminLogoutBtn" class="ripple admin-secondary-btn">LOG OUT</button>
+    </header>
+
+    <div class="admin-layout">
+      <nav class="admin-sidebar">
+        <button class="admin-nav-item active" data-panel="dashboardPanel">Dashboard</button>
+        <button class="admin-nav-item" data-panel="maintenancePanel">Maintenance Mode</button>
+        <button class="admin-nav-item" data-panel="uploadPanel">Upload Video</button>
+        <button class="admin-nav-item" data-panel="editPanel">Edit Videos</button>
+        <button class="admin-nav-item" data-panel="settingsPanel">System Settings</button>
+      </nav>
+
+      <main class="admin-main">
+
+        <!-- DASHBOARD PANEL -->
+        <section id="dashboardPanel" class="admin-panel active">
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <div class="stat-label">TOTAL VIDEOS</div>
+              <div class="stat-value" id="statTotalVideos">0</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-label">TOTAL VIEWS</div>
+              <div class="stat-value" id="statTotalViews">0</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-label">MAINTENANCE</div>
+              <div class="stat-value" id="statMaintenance">OFFLINE</div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-label">BUILD</div>
+              <div class="stat-value">V2.4.1</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MAINTENANCE PANEL -->
+        <section id="maintenancePanel" class="admin-panel">
+          <h2>MAINTENANCE MODE</h2>
+          <p>Toggle full-site maintenance mode. When enabled, visitors see the animated countdown + progress screen.</p>
+
+          <div class="admin-toggle-row">
+            <span>SITE STATUS</span>
+            <label class="switch">
+              <input type="checkbox" id="maintenanceToggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="admin-toggle-row">
+            <span>ALLOW ADMIN ACCESS</span>
+            <label class="switch">
+              <input type="checkbox" id="maintenanceAllowAdmin" checked disabled>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <button id="applyMaintenanceBtn" class="ripple admin-primary-btn">APPLY CHANGES</button>
+          <div id="maintenanceStatusMsg" class="admin-status-msg"></div>
+        </section>
+
+        <!-- UPLOAD PANEL -->
+        <section id="uploadPanel" class="admin-panel">
+          <h2>UPLOAD VIDEO</h2>
+          <p>Add a new video entry to your Mini YouTube list. (Files are referenced by URL or path.)</p>
+
+          <div class="admin-form-grid">
+            <div class="admin-form-group">
+              <label>VIDEO TITLE</label>
+              <input type="text" id="uploadTitle" placeholder="Enter video title...">
+            </div>
+            <div class="admin-form-group">
+              <label>CHANNEL NAME</label>
+              <input type="text" id="uploadChannel" placeholder="Enter channel name...">
+            </div>
+            <div class="admin-form-group">
+              <label>CATEGORY</label>
+              <input type="text" id="uploadCategory" placeholder="coding, gaming, music, tutorial...">
+            </div>
+            <div class="admin-form-group">
+              <label>VIEWS</label>
+              <input type="number" id="uploadViews" placeholder="e.g. 1200">
+            </div>
+          </div>
+
+          <div class="admin-form-group">
+            <label>THUMBNAIL URL / PATH</label>
+            <input type="text" id="uploadThumbnail" placeholder="images/thumbnail.jpg or https://...">
+          </div>
+
+          <div class="admin-form-group">
+            <label>VIDEO URL / PATH</label>
+            <input type="text" id="uploadVideoUrl" placeholder="videos/video.mp4 or https://...">
+          </div>
+
+          <div class="admin-form-group">
+            <label>DESCRIPTION</label>
+            <textarea id="uploadDescription" rows="3" placeholder="Enter video description..."></textarea>
+          </div>
+
+          <button id="uploadVideoBtn" class="ripple admin-primary-btn">UPLOAD VIDEO</button>
+          <div id="uploadStatusMsg" class="admin-status-msg"></div>
+        </section>
+
+        <!-- EDIT PANEL -->
+        <section id="editPanel" class="admin-panel">
+          <h2>EDIT VIDEOS</h2>
+          <p>Edit or delete existing videos. Changes are stored locally in your browser.</p>
+
+          <div id="editVideosList" class="admin-video-list"></div>
+        </section>
+
+        <!-- SETTINGS PANEL -->
+        <section id="settingsPanel" class="admin-panel">
+          <h2>SYSTEM SETTINGS</h2>
+          <p>Basic configuration values (visual only in this version).</p>
+
+          <div class="admin-settings-grid">
+            <div class="admin-setting-row">
+              <span>Max Upload Size</span>
+              <span>500MB</span>
+            </div>
+            <div class="admin-setting-row">
+              <span>Video Quality</span>
+              <span>1080p</span>
+            </div>
+            <div class="admin-setting-row">
+              <span>Auto-Backup</span>
+              <span>ENABLED</span>
+            </div>
+            <div class="admin-setting-row">
+              <span>CDN Status</span>
+              <span>ACTIVE</span>
+            </div>
+            <div class="admin-setting-row">
+              <span>Cache Duration</span>
+              <span>24H</span>
+            </div>
+            <div class="admin-setting-row">
+              <span>API Rate Limit</span>
+              <span>1000/HR</span>
+            </div>
+          </div>
+
+          <button class="ripple admin-secondary-btn">CONFIGURE SETTINGS</button>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
