@@ -8,16 +8,31 @@
 </head>
 <body>
 
+  <!-- SIDEBAR (Homepage Only) -->
+  <div class="sidebar" id="sidebar">
+    <button class="close-sidebar" id="closeSidebar">✕</button>
+    <a href="index.html">Home</a>
+    <a href="#">Trending</a>
+    <a href="#">Subscriptions</a>
+    <a href="#">Library</a>
+  </div>
+
+  <!-- OPEN SIDEBAR BUTTON -->
+  <button class="open-sidebar" id="openSidebar">☰</button>
+
   <header>Mini YouTube</header>
-<input type="text" id="searchInput" placeholder="Search videos..." class="search-bar">
+
+  <input type="text" id="searchInput" placeholder="Search videos..." class="search-bar">
+
+  <div class="categories">
+    <button data-category="all" class="active">All</button>
+    <button data-category="coding">Coding</button>
+    <button data-category="gaming">Gaming</button>
+    <button data-category="music">Music</button>
+    <button data-category="tutorial">Tutorials</button>
+  </div>
+
   <div class="video-grid"></div>
-<div class="categories">
-  <button data-category="all" class="active">All</button>
-  <button data-category="coding">Coding</button>
-  <button data-category="gaming">Gaming</button>
-  <button data-category="music">Music</button>
-  <button data-category="tutorial">Tutorials</button>
-</div>
 
   <script src="script.js"></script>
 </body>
