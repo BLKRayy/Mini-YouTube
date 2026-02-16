@@ -1,5 +1,5 @@
 /*******************************
- * HOMEPAGE: VIDEO LOADING + SEARCH + CATEGORIES
+ * HOMEPAGE: VIDEO LOADING + SEARCH + CATEGORIES + SIDEBAR
  *******************************/
 if (document.querySelector(".video-grid")) {
 
@@ -85,6 +85,21 @@ if (document.querySelector(".video-grid")) {
 
                     renderVideos(filtered);
                 });
+            });
+
+            /*******************************
+             * SIDEBAR TOGGLE
+             *******************************/
+            const sidebar = document.getElementById("sidebar");
+            const openSidebar = document.getElementById("openSidebar");
+            const closeSidebar = document.getElementById("closeSidebar");
+
+            openSidebar.addEventListener("click", () => {
+                sidebar.classList.add("open");
+            });
+
+            closeSidebar.addEventListener("click", () => {
+                sidebar.classList.remove("open");
             });
         })
         .catch(error => console.error("Error loading videos:", error));
