@@ -1,56 +1,87 @@
-// Load videos from videos.json and display them on the homepage
-fetch("videos.json")
-    .then(response => response.json())
-    .then(videos => {
-        const grid = document.querySelector(".video-grid");
+/*******************************
+ * HOMEPAGE VIDEO LOADING + SEARCH
+ *******************************/
+if (document.querySelector(".video-grid")) {
 
-        videos.forEach(video => {
-            // Create the video card container
-            const card = document.createElement("a");
-            card.classList.add("video-card");
-            card.href = `video.html?id=${video.id}`;
+    fetch("videos.json")
+        .then(response => response.json())
+        .then(videos => {
+            const grid = document.querySelector(".video-grid");
+            const searchInput = document.getElementById("searchInput");
 
-            // Build the inner HTML
-            card.innerHTML = `
-                <img class="thumbnail" src="${video.thumbnail}" alt="${video.title}">
-                <div class="video-info">
-                    <div class="video-title">${video.title}</div>
-                    <div class="video-views">${video.views} views</div>
-                </div>
-            `;
+            // Reusable function to render videos
+            function renderVideos(list) {
+                grid.innerHTML = "";
 
-            // Add card to the grid
-            grid.appendChild(card);
-        });
-    })
-    .catch(error => console.error("Error loading videos:", error));
-// Get the ?id= parameter from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const videoId = urlParams.get("id");
+                list.forEach(video => {
+                    const card = document.createElement("a");
+                    card.classList.add("video-card");
+                    card.href = `video.html?id=${video.id}`;
 
-// Fetch videos.json and load the correct video
-fetch("videos.json")
-    .then(response => response.json())
-    .then(videos => {
-        const video = videos.find(v => v.id == videoId);
+                    card.innerHTML = `
+                        <img class="thumbnail" src="${video.thumbnail}" alt="${video.title}">
+                        <div class="video-info">
+                            <div class="video-title">${video.title}</div>
+                            <div class="video-views">${video.views} views • ${video.uploadDate}</div>
+                        </div>
+                    `;
 
-        if (!video) {
-            console.error("Video not found");
-            return;
-        }
+                    grid.appendChild(card);
+                });
+            }
 
-        // Fill in the video player
-        const player = document.getElementById("videoPlayer");
-        player.src = video.videoUrl;
+            // Initial render
+            renderVideos(videos);
 
-        // Fill in text fields
-        document.getElementById("videoTitle").textContent = video.title;
-        document.getElementById("videoViews").textContent = video.views + " views";
-        document.getElementById("videoDate").textContent = video.uploadDate;
-        document.getElementById("videoChannel").textContent = video.channel;
-        document.getElementById("videoDescription").textContent = video.description;
+            // LIVE SEARCH
+            if (searchInput) {
+                searchInput.addEventListener("input", () => {
+                    const term = searchInput.value.toLowerCase();
 
-        // Channel avatar
-        document.getElementById("videoChannelAvatar").src = video.channelAvatar;
-    })
-    .catch(error => console.error("Error loading video:", error));
+                    const filtered = videos.filter(video =>
+                        video.title.toLowerCase().includes(term) ||
+                        video.channel.toLowerCase().includes(term) ||
+                        video.description.toLowerCase().includes(term)
+                    );
+
+                    renderVideos(filtered);
+                });
+            }
+        })
+        .catch(error => console.error("Error loading videos:", error));
+}
+
+
+/*******************************
+ * VIDEO PAGE LOADING
+ *******************************/
+if (document.getElementById("videoPlayer")) {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoId = urlParams.get("id");
+
+    fetch("videos.json")
+        .then(response => response.json())
+        .then(videos => {
+            const video = videos.find(v => v.id == videoId);
+
+            if (!video) {
+                console.error("Video not found");
+                return;
+            }
+
+            // Fill in the video player
+            document.getElementById("videoPlayer").src = video.videoUrl;
+
+            // Fill in text fields
+            document.getElementById("videoTitle").textContent = video.title;
+            document.getElementById("videoViews").textContent = video.views + " views";
+            document.getElementById("videoDate").textContent = video.uploadDate;
+            document.getElementById("videoChannel").textContent = video.channel;
+            document.getElementById("videoDescription").textContent = video.description;
+
+            // Channel avatar
+            document.getElementById("videoChannelAvatar").src = video.channelAvatar;
+        })
+        .catch(error => console.error("Error loading video:", error));
+}
