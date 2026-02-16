@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player - Mini YouTube</title>
+</head>
+<body>
+    <!-- Header Section -->
+    <header id="main-header">
+        <div class="header-container">
+            <a href="index.html" class="back-button" aria-label="Back to home">← Back</a>
+            <h1 class="site-title">Mini YouTube</h1>
+        </div>
+    </header>
 
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="video-container">
+            <!-- Video Player -->
+            <div class="player-wrapper">
+                <video id="videoPlayer" controls class="video-player">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Video Information -->
+            <section class="video-details">
+                <h2 id="videoTitle" class="video-title">Loading video...</h2>
+                
+                <div class="video-stats">
+                    <span id="videoViews" class="views">0 views</span>
+                    <span class="separator">•</span>
+                    <span id="videoDate" class="upload-date">Loading...</span>
+                </div>
+
+                <div class="channel-info">
+                    <img id="channelAvatar" 
+                         src="https://via.placeholder.com/48/333/666?text=CH" 
+                         alt="Channel avatar" 
+                         class="channel-avatar">
+                    <div class="channel-details">
+                        <h3 id="videoChannel" class="channel-name">Loading channel...</h3>
+                    </div>
+                </div>
+
+                <div class="description-container">
+                    <h4 class="description-label">Description</h4>
+                    <p id="videoDescription" class="video-description">Loading description...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- JavaScript will be linked here -->
+    <script src="script.js"></script>
+</body>
+</html>
