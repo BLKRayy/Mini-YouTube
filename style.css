@@ -1,1 +1,110 @@
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #181818;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
 
+/* Header */
+header {
+  background-color: #202020;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid #333;
+}
+
+/* Video Grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Video Card */
+.video-card {
+  background-color: #202020;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.video-card img {
+  width: 100%;
+  display: block;
+}
+
+/* Video Info */
+.video-info {
+  padding: 12px;
+}
+
+.video-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+
+.video-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* Video Page Layout */
+.video-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Video Details */
+.video-details {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.video-details h1 {
+  margin-bottom: 10px;
+}
+
+.channel-info {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.channel-info img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Back Button */
+.back {
+  display: inline-block;
+  margin: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
